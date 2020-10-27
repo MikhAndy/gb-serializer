@@ -6,8 +6,10 @@ import ru.andrey.deserializer.XmlDeserializer;
 import ru.andrey.users.User;
 import ru.andrey.users.UserCollection;
 
+import javax.jws.soap.SOAPBinding;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SerializerDeserializerTest {
@@ -33,7 +35,7 @@ public class SerializerDeserializerTest {
     public void testXmlSerializer() {
         UserCollection userCollection = prepareTestData();
         File xmlFile = new File("users.xml");
-        JsonSerializer serializer = new JsonSerializer();
+        XmlSerializer serializer = new XmlSerializer();
         serializer.serialize(userCollection, xmlFile.getName());
         Assertions.assertTrue(xmlFile.exists());
         Assertions.assertTrue(xmlFile.length() > 0);
@@ -48,19 +50,59 @@ public class SerializerDeserializerTest {
 
 
     private UserCollection prepareTestData() {
-        User pavel = new User(1,"Pavel", "pavel@mail.ru");
-        User andrey = new User(2,"Andrey", "andrey@gmail.com");
-        User alexander = new User(3,"Alexander", "alexander@yandex.ru");
-        User natasha = new User(4,"Natasha", "natasha@gmail.com");
-        User anna = new User(5,"Anna", "anna@mail.ru");
-        User sergey = new User(6,"Sergey", "sergey@rambler.ru");
-        User mikhail = new User(7,"Mikhail", "maikhail@rambler.ru");
-        User mike = new User(8,"Mike", "mike@gmail.com");
-        User bob = new User(9,"Bob", "bob@rambler.ru");
-        User dmitriy = new User(10,"Dmitriy", "dmitriy@yandex.ru");
+        User pavel = new User();
+        pavel.setId(1);
+        pavel.setName("Pavel");
+        pavel.setEmail("pavel@mail.ru");
+
+        User andrey = new User();
+        pavel.setId(2);
+        pavel.setName("Andrey");
+        pavel.setEmail("andrey@gmail.com");
+
+        User alexander = new User();
+        pavel.setId(3);
+        pavel.setName("Alexander");
+        pavel.setEmail("alexander@yandex.ru");
+
+        User natasha = new User();
+        pavel.setId(4);
+        pavel.setName("Natasha");
+        pavel.setEmail("natasha@gmail.com");
+
+        User anna = new User();
+        pavel.setId(3);
+        pavel.setName("Anna");
+        pavel.setEmail("anna@mail.ru");
+
+        User sergey = new User();
+        pavel.setId(3);
+        pavel.setName("Sergey");
+        pavel.setEmail("sergey@rambler.ru");
+
+        User mikhail = new User();
+        pavel.setId(3);
+        pavel.setName("Mikhail");
+        pavel.setEmail("maikhail@rambler.ru");
+
+        User mike = new User();
+        pavel.setId(3);
+        pavel.setName("Mike");
+        pavel.setEmail("mike@gmail.com");
+
+        User bob = new User();
+        pavel.setId(3);
+        pavel.setName("Bob");
+        pavel.setEmail("bob@rambler.ru");
+
+        User dmitriy = new User();
+        pavel.setId(3);
+        pavel.setName("Dmitriy");
+        pavel.setEmail("dmitriy@yandex.ru");
 
         UserCollection userCollection = new UserCollection();
         userCollection.setUsers(new ArrayList<>());
+
         userCollection.getUsers().add(pavel);
         userCollection.getUsers().add(andrey);
         userCollection.getUsers().add(alexander);
